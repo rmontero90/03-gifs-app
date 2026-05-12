@@ -1,40 +1,28 @@
 import { mockGifs } from "./mock-data/gif.mock";
+import { CustomHeader } from "./shared/components/CustomHeader";
+import { SearchBar } from "./shared/components/SearchBar";
+import { PreviousSearches } from "./gifs/components/PreviousSearches";
+import { GifList } from "./gifs/components/GifList";
+import { useState } from "react";
 
 export const GifsApp = () => {
+  const [previousTerm, setpreviousTerm] = useState(["dragon ball z"]);
+
+  const handleTermClicked = (term: string) => {
+    console.log({ term });
+  };
   return (
     <>
-        <div className="content-center">
-            <h1>Buscador gifs</h1>
-            <p>Descubre y comparte el gif perfecto</p>
-        </div>
+      <CustomHeader title="Mis Gifs" description="Busca tus gifs favoritos" />
 
-        <div className="search-container">
-            <input type="text" placeholder="Buscar gifs..." />
-            <button>Buscar</button>
-        </div>
+      <SearchBar placeholder="Buscar gifs..." />
 
-        <div className="previous-searches">
-            <h2>Busquedas previas</h2>
-            <ul className="previous-searches-list">
-                <li>Goku</li>
-                <li>Vegeta</li>
-                <li>Gohan</li>
-            </ul>
-        </div>
+      <PreviousSearches
+        searches={["Goku", "Vegeta", "Gohan"]}
+        onLabelClicked={handleTermClicked}
+      />
 
-        <div className="gifs-container">
-           {
-            mockGifs.map(gif => (
-                <div key={gif.id} className="gif-card">
-                    <img src={gif.url} alt={gif.title} />
-                    <h3>{gif.title}</h3>
-                    <p>
-                        {gif.width} x {gif.height} (1.5mb)
-                    </p>
-                </div>
-            ))
-            } 
-        </div>
+      <GifList gifs={mockGifs} />
     </>
-  )
-}
+  );
+};
