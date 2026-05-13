@@ -11,11 +11,16 @@ export const GifsApp = () => {
   const handleTermClicked = (term: string) => {
     console.log({ term });
   };
+
+  const handleSearch = (query: string) => {
+    console.log({ query });
+  };
+
   return (
     <>
       <CustomHeader title="Mis Gifs" description="Busca tus gifs favoritos" />
 
-      <SearchBar placeholder="Buscar gifs..." />
+      <SearchBar placeholder="Buscar gifs..." onQuery={handleSearch} />
 
       <PreviousSearches
         searches={["Goku", "Vegeta", "Gohan"]}
