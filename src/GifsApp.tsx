@@ -1,11 +1,20 @@
+import { mockGifs } from "./mock-data/gif.mock";
 import { CustomHeader } from "./shared/components/CustomHeader";
 import { SearchBar } from "./shared/components/SearchBar";
-import { PreviousSearches } from "./shared/components/PreviousSearches";
+import { PreviousSearches } from "./gifs/components/PreviousSearches";
 import { GifList } from "./gifs/components/GifList";
-import { useGifs } from "./gifs//hooks/useGifs";
+import { useState } from "react";
 
 export const GifsApp = () => {
-  const { gifs, handleTermClicked, handleSearch, previousTerm } = useGifs();
+  const [previousTerm, setpreviousTerm] = useState(["dragon ball z"]);
+
+  const handleTermClicked = (term: string) => {
+    console.log({ term });
+  };
+
+  const handleSearch = (query: string) => {
+    console.log({ query });
+  };
 
   return (
     <>
@@ -14,11 +23,11 @@ export const GifsApp = () => {
       <SearchBar placeholder="Buscar gifs..." onQuery={handleSearch} />
 
       <PreviousSearches
-        searches={previousTerm}
+        searches={["Goku", "Vegeta", "Gohan"]}
         onLabelClicked={handleTermClicked}
       />
 
-      <GifList gifs={gifs} />
+      <GifList gifs={mockGifs} />
     </>
   );
 };
