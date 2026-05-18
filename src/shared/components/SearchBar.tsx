@@ -28,7 +28,6 @@ export const SearchBar = ({
 
   return (
     <div className="search-container">
-      <h1>{query}</h1>
       <input
         type="text"
         placeholder={placeholder}
